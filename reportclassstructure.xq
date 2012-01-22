@@ -70,7 +70,7 @@ declare function local:argumentsDetails ($method) as element()* {
 
 declare function local:returnTypeDetails ($method) as element()* {
       let $details := local:getTypeDetails($method/@returns)
-      let $moreDetails := () (:local:getTypeDetails($details/@type):)
+      let $moreDetails := () (:local:getTypeDetails($details/@type) this statement is raising Error XPTY0004 error)
       return
              <ReturnDetails>
                {$details}
