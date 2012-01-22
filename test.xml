@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<GCC_XML cvs_revision="1.135">
+<Class id="_753" name="Header" context="_1" mangled="6Header" demangled="Header" location="f115:4" file="f115" line="4" artificial="1" size="64" align="32" members="_5454 _5455 _5456 _5457 _5458 _5459 _5460 _5461 _5462 _5463 _5464 _5465 _5466 " bases="_34 "/>
+<Variable id="_5454" name="staticMetaObject" type="_851c" context="_753" access="public" mangled="_ZN6Header16staticMetaObjectE" demangled="Header::staticMetaObject" location="f115:5" file="f115" line="5" static="1" extern="1"/>
+<Method id="_5455" name="metaObject" returns="_13134" const="1" virtual="1" overrides="_3460 " context="_753" access="public" mangled="_ZNK6Header10metaObjectEv" demangled="Header::metaObject() const" location="f115:5" file="f115" line="5" extern="1"/>
+<Method id="_5456" name="qt_metacast" returns="_2689" virtual="1" overrides="_3461 " context="_753" access="public" mangled="_ZN6Header11qt_metacastEPKc" demangled="Header::qt_metacast(char const*)" location="f115:5" file="f115" line="5" extern="1">
+  <Argument type="_3411" location="f115:5" file="f115" line="5"/>
+</Method>
+<Method id="_5457" name="tr" returns="_1917" static="1" context="_753" access="public" mangled="_ZN6Header2trEPKcS1_" demangled="Header::tr(char const*, char const*)" location="f115:5" file="f115" line="5" endline="5" inline="1">
+  <Argument name="s" type="_3411" location="f115:5" file="f115" line="5"/>
+  <Argument name="c" type="_3411" location="f115:5" file="f115" line="5" default="0"/>
+</Method>
+<Method id="_5458" name="trUtf8" returns="_1917" static="1" context="_753" access="public" mangled="_ZN6Header6trUtf8EPKcS1_" demangled="Header::trUtf8(char const*, char const*)" location="f115:5" file="f115" line="5" endline="5" inline="1">
+  <Argument name="s" type="_3411" location="f115:5" file="f115" line="5"/>
+  <Argument name="c" type="_3411" location="f115:5" file="f115" line="5" default="0"/>
+</Method>
+<Method id="_5459" name="tr" returns="_1917" static="1" context="_753" access="public" mangled="_ZN6Header2trEPKcS1_i" demangled="Header::tr(char const*, char const*, int)" location="f115:5" file="f115" line="5" endline="5" inline="1">
+  <Argument name="s" type="_3411" location="f115:5" file="f115" line="5"/>
+  <Argument name="c" type="_3411" location="f115:5" file="f115" line="5"/>
+  <Argument name="n" type="_191" location="f115:5" file="f115" line="5"/>
+</Method>
+<Method id="_5460" name="trUtf8" returns="_1917" static="1" context="_753" access="public" mangled="_ZN6Header6trUtf8EPKcS1_i" demangled="Header::trUtf8(char const*, char const*, int)" location="f115:5" file="f115" line="5" endline="5" inline="1">
+  <Argument name="s" type="_3411" location="f115:5" file="f115" line="5"/>
+  <Argument name="c" type="_3411" location="f115:5" file="f115" line="5"/>
+  <Argument name="n" type="_191" location="f115:5" file="f115" line="5"/>
+</Method>
+<Method id="_5461" name="qt_metacall" returns="_191" virtual="1" overrides="_3466 " context="_753" access="public" mangled="_ZN6Header11qt_metacallEN11QMetaObject4CallEiPPv" demangled="Header::qt_metacall(QMetaObject::Call, int, void**)" location="f115:5" file="f115" line="5" extern="1">
+  <Argument type="_5613" location="f115:5" file="f115" line="5"/>
+  <Argument type="_191" location="f115:5" file="f115" line="5"/>
+  <Argument type="_3997" location="f115:5" file="f115" line="5"/>
+</Method>
+<Constructor id="_5462" name="Header" explicit="1" context="_753" access="public" mangled="_ZN6HeaderC1Ev *INTERNAL* " demangled="Header::Header()" location="f115:7" file="f115" line="7" extern="1"/>
+<Destructor id="_5463" name="Header" virtual="1" overrides="_3470 " context="_753" access="public" mangled="_ZN6HeaderD1Ev *INTERNAL* " demangled="Header::~Header()" location="f115:8" file="f115" line="8" extern="1">
+</Destructor>
+<Method id="_5464" name="dosth" returns="_160" context="_753" access="public" mangled="_ZN6Header5dosthEv" demangled="Header::dosth()" location="f115:10" file="f115" line="10" extern="1"/>
+<Method id="_5465" name="emitSignal" returns="_160" context="_753" access="protected" mangled="_ZN6Header10emitSignalEv" demangled="Header::emitSignal()" location="f115:13" file="f115" line="13" extern="1"/>
+<Method id="_5466" name="slotslot" returns="_160" context="_753" access="public" mangled="_ZN6Header8slotslotEv" demangled="Header::slotslot()" location="f115:16" file="f115" line="16" extern="1"/>
+<FundamentalType id="_15" name="long long unsigned int" size="64" align="64"/>
+<FundamentalType id="_21" name="unsigned int" size="32" align="32"/>
+<FundamentalType id="_58" name="unsigned char" size="8" align="8"/>
+<FundamentalType id="_152" name="short int" size="16" align="16"/>
+<FundamentalType id="_160" name="void" align="8"/>
+<FundamentalType id="_189" name="long long int" size="64" align="64"/>
+<FundamentalType id="_191" name="int" size="32" align="32"/>
+<FundamentalType id="_226" name="long int" size="32" align="32"/>
+<FundamentalType id="_329" name="short unsigned int" size="16" align="16"/>
+<FundamentalType id="_544" name="long unsigned int" size="32" align="32"/>
+<FundamentalType id="_1207" name="long double" size="96" align="32"/>
+<FundamentalType id="_1237" name="signed char" size="8" align="8"/>
+<FundamentalType id="_1500" name="double" size="64" align="64"/>
+<FundamentalType id="_3412" name="bool" size="8" align="8"/>
+<FundamentalType id="_3413" name="float" size="32" align="32"/>
+<FundamentalType id="_3443" name="wchar_t" size="32" align="32"/>
+<FundamentalType id="_3530" name="complex double" size="128" align="64"/>
+<FundamentalType id="_3979" name="complex float" size="64" align="32"/>
+<FundamentalType id="_3982" name="complex long double" size="192" align="32"/>
+<FundamentalType id="_3985" name="char" size="8" align="8"/>
+<Enumeration id="_5613" name="Call" context="_851" access="public" location="f109:440" file="f109" line="440" artificial="1" size="32" align="32">
+  <EnumValue name="InvokeMetaMethod" init="0"/>
+  <EnumValue name="ReadProperty" init="1"/>
+  <EnumValue name="WriteProperty" init="2"/>
+  <EnumValue name="ResetProperty" init="3"/>
+  <EnumValue name="QueryPropertyDesignable" init="4"/>
+  <EnumValue name="QueryPropertyScriptable" init="5"/>
+  <EnumValue name="QueryPropertyStored" init="6"/>
+  <EnumValue name="QueryPropertyEditable" init="7"/>
+  <EnumValue name="QueryPropertyUser" init="8"/>
+  <EnumValue name="CreateInstance" init="9"/>
+</Enumeration>
+<PointerType id="_3411" type="_3985c" size="32" align="32"/>
+<CvQualifiedType id="_3985c" type="_3985" const="1"/>
+<Class id="_1917" name="QString" context="_1" mangled="7QString" demangled="QString" location="f38:101" file="f38" line="101" artificial="1" size="32" align="32" befriending="_754 _689 _615" members="_8544 _8545 _8546 _8547 _8548 _8549 _8550 _8551 _8552 _8554 _8556 _8557 _8558 _6228 _8559 _8561 _8562 _8563 _8564 _8565 _8566 _8567 _8568 _8569 _8570 _8571 _8572 _8573 _8574 _8575 _8576 _8577 _8578 _8579 _8580 _8581 _8582 _8583 _8584 _8585 _8586 _8587 _8588 _8589 _8590 _8591 _8592 _8593 _8594 _8595 _8596 _8597 _8598 _8599 _8600 _8601 _8602 _8603 _8604 _8605 _8606 _8607 _8608 _8609 _8610 _8611 _8612 _8613 _8614 _8615 _8616 _8617 _8618 _8619 _8620 _8621 _8622 _8623 _8624 _8625 _8626 _8627 _8628 _8629 _8630 _8631 _8632 _8633 _8634 _8635 _8636 _8637 _8638 _8639 _8640 _8641 _8642 _8643 _8644 _8645 _8646 _8647 _8648 _8649 _8650 _8651 _8652 _8653 _8654 _8655 _8656 _8657 _8658 _8659 _8660 _8661 _8662 _8663 _8664 _8665 _8666 _8667 _8668 _8669 _8670 _8671 _8672 _8673 _8674 _8675 _8676 _8677 _8678 _8679 _8680 _8681 _8682 _8683 _8684 _8685 _8686 _8687 _8688 _8689 _8690 _8691 _8692 _8693 _8694 _8695 _8696 _8697 _8698 _8699 _8700 _8701 _8702 _8703 _8704 _8705 _8706 _8707 _8708 _8709 _8710 _8711 _8712 _8713 _8714 _8715 _8716 _8717 _8718 _8719 _8720 _8721 _8722 _8723 _8724 _8725 _8726 _8727 _8728 _8729 _8730 _8731 _8732 _8733 _8734 _8735 _8736 _8737 _8738 _8739 _8740 _8741 _8742 _8743 _8744 _8745 _8746 _8747 _8748 _8749 _8750 _8751 _8752 _8753 _8754 _8755 _8756 _8757 _8758 _8759 _8760 _8761 _8762 _8763 _8764 _8765 _8766 _8767 _8768 _8769 _8770 _8771 _8772 _8773 _8774 _8775 _8776 _8777 _8778 _8779 _8780 _8781 _8782 _8783 _8784 _8785 _8786 _8787 _8788 _8789 _8790 _8791 _8792 _8793 _8794 _8795 _8796 _8797 _8798 _8799 _8800 _8801 _8802 _8803 _8804 _8805 _8806 _8807 _8808 _8809 _8810 _8811 _8812 _8813 _8814 _8815 _8816 _8817 _8818 _8819 _8820 _8821 _8822 _8823 _8824 " bases=""/>
+</GCC_XML>

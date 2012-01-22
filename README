@@ -1,0 +1,1 @@
+This project would be parsing the gccxml and getting the class, function, variable details and trying to compose a qt test on top it
