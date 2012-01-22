@@ -25,26 +25,6 @@ declare function local:findClassType ($typeId as xs:string) as element()* {
           return <TypeId>{$type}</TypeId>
 };
 
-declare function local:findType ($typeId as xs:string, $elementName as xs:string) as element()* {
-      for $type in doc($fileToOpen)//PointerType[@id = $typeId]
-            let $actualType := local:getTypeDetails($type/@type)
-            return <TypeId>
-                      {$type}
-                      {$actualType}
-                   </TypeId>
-};
-
-
-declare function local:findPointerType ($typeId as xs:string) as element()* {
-       let $pointerType as xs:string := "PointerType"
-       return local:findType($typeId, $pointerType)
-};
-
-declare function local:findCvQualifiedType ($typeId as xs:string) as element()* {
-       let $cvQualifiedType as xs:string := "CvQualifiedType"
-       return local:findType($typeId, $cvQualifiedType)
-};
-
 declare function local:getTypeDetails ($typeId as xs:string) as element()* {
       let $argumentdetails := local:findFundamentalTypeId($typeId)
       return if ( exists($argumentdetails) )
@@ -56,6 +36,24 @@ declare function local:getTypeDetails ($typeId as xs:string) as element()* {
              else if (exists(local:findCvQualifiedType($typeId)))
              then local:findCvQualifiedType($typeId)
              else local:findClassType($typeId)
+};
+
+declare function local:findPointerType ($typeId as xs:string) as element()* {
+      for $type in doc($fileToOpen)//PointerType[@id = $typeId]
+            let $actualType := local:getTypeDetails($type/@type)
+            return <TypeId>
+                      {$type}
+                      {$actualType}
+                   </TypeId>
+};
+
+declare function local:findCvQualifiedType ($typeId as xs:string) as element()* {
+      for $type in doc($fileToOpen)//CvQualifiedType[@id = $typeId]
+            let $actualType := local:getTypeDetails($type/@type)
+            return <TypeId>
+                      {$type}
+                      {$actualType}
+                   </TypeId>
 };
 
 declare function local:argumentDetails ($argument) as element()* {
