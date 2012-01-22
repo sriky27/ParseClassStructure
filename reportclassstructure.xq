@@ -70,9 +70,13 @@ declare function local:argumentsDetails ($method) as element()* {
 
 declare function local:returnTypeDetails ($method) as element()* {
       let $details := local:getTypeDetails($method/@returns)
-      return <ReturnDetails>{$details}</ReturnDetails>
+      let $moreDetails := () (:local:getTypeDetails($details/@type):)
+      return
+             <ReturnDetails>
+               {$details}
+               {$moreDetails}
+             </ReturnDetails>
 };
-
 
 declare function local:findFunction ($functionId) as element()* {
       for $method in doc($fileToOpen)//Method[@id = $functionId]
