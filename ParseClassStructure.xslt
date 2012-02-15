@@ -8,7 +8,7 @@
     <xsl:variable name="remaining" select="substring-after($newlist, ' ')" /> 
     Method <xsl:value-of select="$first" /> 
     <xsl:call-template name="method" >
-         <xsl:with-param name="name" select="$first" /> 
+         <xsl:with-param name="id" select="$first" /> 
     </xsl:call-template>
     <xsl:if test="$remaining">
         <xsl:call-template name="method-list">
@@ -51,10 +51,10 @@
   </xsl:template>
 
   <xsl:template name="method" >
-     <xsl:param name="name" /> 
+     <xsl:param name="id" /> 
      <xsl:for-each select="GCC_XML/Method">
         <xsl:choose>
-             <xsl:when test="$name = @name"> 
+             <xsl:when test="($id = @id)"> 
                Method Function <xsl:value-of select="@name"/>
              </xsl:when>
         </xsl:choose>
