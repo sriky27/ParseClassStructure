@@ -52,7 +52,7 @@
 
   <xsl:template name="method" >
      <xsl:param name="id" /> 
-     <xsl:for-each select="GCC_XML/Method">
+     <xsl:for-each select="//GCC_XML/Method">
         <xsl:choose>
              <xsl:when test="($id = @id)"> 
                Method Function <xsl:value-of select="@name"/>
@@ -67,6 +67,13 @@
      </xsl:call-template>   
   </xsl:template>
 
+  <xsl:template name="class_members" >
+     <xsl:param name="members" />
+     <xsl:call-template name="method-list">
+         <xsl:with-param name="list"><xsl:value-of select="$members" /></xsl:with-param>
+     </xsl:call-template>
+  </xsl:template>
+
   <xsl:template name="return" >
      <xsl:for-each select="GCC_XML/Method">
        Returns <xsl:value-of select="@returns"/>
@@ -76,20 +83,15 @@
   <xsl:template name="class" >
      <xsl:for-each select="GCC_XML/Class">
        Class <xsl:value-of select="@name"/>
-       
+       <xsl:call-template name="class_members">
+           <xsl:with-param name="members"><xsl:value-of select="@members" /></xsl:with-param>
+       </xsl:call-template>
      </xsl:for-each>
   </xsl:template>  
   
   <xsl:template match="/">
      #include "connection.h"
      
-     <xsl:call-template name="globalEnumeration" /> 
-     <xsl:call-template name="pointerType" />
-     <xsl:call-template name="fundamentalType" />
-     <xsl:call-template name="argument" />
-     <xsl:call-template name="method" />
-     <xsl:call-template name="members" />
-     <xsl:call-template name="return" />
      <xsl:call-template name="class" />
    
   </xsl:template>
