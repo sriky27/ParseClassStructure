@@ -44,10 +44,8 @@
   
   <xsl:template name="argument" >
        <xsl:param name="node" /> 
-       <xsl:for-each select="$node">
-         Argument <xsl:value-of select="@type"/>
+         Argument <xsl:value-of select="$node/@type"/>
      
-       </xsl:for-each>
   </xsl:template>
 
   <xsl:template name="method" >
