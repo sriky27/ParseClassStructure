@@ -16,18 +16,21 @@
 </xsl:template>
 
   <xsl:template name="globalEnumeration" >
+     <xsl:param name="id" /> 
      <xsl:for-each select="GCC_XML/Enumeration">
        Enumeration <xsl:value-of select="@name"/>
      </xsl:for-each>  
   </xsl:template>  
 
   <xsl:template name="pointerType">
+     <xsl:param name="id" /> 
      <xsl:for-each select="GCC_XML/PointerType">
        PointerType id = <xsl:value-of select="@id"/> type = <xsl:value-of select="@type"/>
      </xsl:for-each>
   </xsl:template>
   
   <xsl:template name="fundamentalType">
+      <xsl:param name="id" /> 
       <xsl:for-each select="GCC_XML/FundamentalType">
          FundamentalType <xsl:value-of select="@id"/>
        </xsl:for-each>
@@ -38,6 +41,7 @@
   </xsl:template>  
   
   <xsl:template name="argument" >
+       <xsl:param name="name" /> 
        <xsl:for-each select="GCC_XML/Argument">
          Argument <xsl:value-of select="@type"/>
      
@@ -45,6 +49,7 @@
   </xsl:template>
 
   <xsl:template name="method" >
+     <xsl:param name="name" /> 
      <xsl:for-each select="GCC_XML/Method">
        Method <xsl:value-of select="@name"/>
        
