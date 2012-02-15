@@ -7,7 +7,9 @@
     <xsl:variable name="first" select="substring-before($newlist, ' ')" /> 
     <xsl:variable name="remaining" select="substring-after($newlist, ' ')" /> 
     Method <xsl:value-of select="$first" /> 
-    
+    <xsl:call-template name="method" >
+         <xsl:with-param name="name" select="$first" /> 
+    </xsl:call-template>
     <xsl:if test="$remaining">
         <xsl:call-template name="method-list">
                 <xsl:with-param name="list" select="$remaining" /> 
