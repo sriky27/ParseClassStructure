@@ -53,8 +53,11 @@
   <xsl:template name="method" >
      <xsl:param name="name" /> 
      <xsl:for-each select="GCC_XML/Method">
-       Method <xsl:value-of select="@name"/>
-       
+        <xsl:choose>
+             <xsl:when test="$name = @name"> 
+               Method Function <xsl:value-of select="@name"/>
+             </xsl:when>
+        </xsl:choose>
      </xsl:for-each>
   </xsl:template>
 
