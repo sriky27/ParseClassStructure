@@ -43,8 +43,8 @@
   </xsl:template>  
   
   <xsl:template name="argument" >
-       <xsl:param name="type" /> 
-       <xsl:for-each select=".">
+       <xsl:param name="node" /> 
+       <xsl:for-each select="$node">
          Argument <xsl:value-of select="@type"/>
      
        </xsl:for-each>
@@ -55,12 +55,10 @@
      <xsl:for-each select="//GCC_XML/Method">
         <xsl:choose>
              <xsl:when test="($id = @id)"> 
-               Method Function <xsl:value-of select="@name"/>
-               <xsl:for-each select="//Argument">
-                   <xsl:call-template name="argument">
-                       <xsl:with-param name="type"><xsl:value-of select="." /></xsl:with-param>
-                   </xsl:call-template>
-               </xsl:for-each>
+                 Method Function <xsl:value-of select="@name"/>
+                 <xsl:for-each select="Argument">
+                     Argument <xsl:value-of select="@type"/>
+                 </xsl:for-each>
              </xsl:when>
         </xsl:choose>
      </xsl:for-each>
