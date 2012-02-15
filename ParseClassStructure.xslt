@@ -19,21 +19,21 @@
 
   <xsl:template name="globalEnumeration" >
      <xsl:param name="id" /> 
-     <xsl:for-each select="GCC_XML/Enumeration">
+     <xsl:for-each select="//GCC_XML/Enumeration">
        Enumeration <xsl:value-of select="@name"/>
      </xsl:for-each>  
   </xsl:template>  
 
   <xsl:template name="pointerType">
      <xsl:param name="id" /> 
-     <xsl:for-each select="GCC_XML/PointerType">
+     <xsl:for-each select="//GCC_XML/PointerType">
        PointerType id = <xsl:value-of select="@id"/> type = <xsl:value-of select="@type"/>
      </xsl:for-each>
   </xsl:template>
   
   <xsl:template name="fundamentalType">
       <xsl:param name="id" /> 
-      <xsl:for-each select="GCC_XML/FundamentalType">
+      <xsl:for-each select="//GCC_XML/FundamentalType">
          FundamentalType <xsl:value-of select="@id"/>
        </xsl:for-each>
   </xsl:template>
@@ -43,8 +43,8 @@
   </xsl:template>  
   
   <xsl:template name="argument" >
-       <xsl:param name="name" /> 
-       <xsl:for-each select="GCC_XML/Argument">
+       <xsl:param name="type" /> 
+       <xsl:for-each select=".">
          Argument <xsl:value-of select="@type"/>
      
        </xsl:for-each>
@@ -56,6 +56,11 @@
         <xsl:choose>
              <xsl:when test="($id = @id)"> 
                Method Function <xsl:value-of select="@name"/>
+               <xsl:for-each select="//Argument">
+                   <xsl:call-template name="argument">
+                       <xsl:with-param name="type"><xsl:value-of select="." /></xsl:with-param>
+                   </xsl:call-template>
+               </xsl:for-each>
              </xsl:when>
         </xsl:choose>
      </xsl:for-each>
