@@ -18,67 +18,93 @@
 </xsl:template>
 
  <!-- Getting the Enumeration-->
-  <xsl:template name="enumeration">
+  <xsl:template name="isEnumerationType">
       <xsl:param name="id" /> 
-      TypeId <xsl:value-of select="$id"/>
-      <xsl:for-each select="//GCC_XML/Enumeration"> <!--//GCC_XML/Enumeration the search xpath pattern-->
+      <xsl:variable name="Valid">
+          <xsl:for-each select="//GCC_XML/Enumeration"> <!--//GCC_XML/Enumeration the search xpath pattern-->
              <xsl:choose>
                    <xsl:when test="($id = @id)">
-                       $typeName <xsl:value-of select="@id"/>
+                       Enumeration <xsl:value-of select="@name"/> id : <xsl:value-of select="@id"/>
                    </xsl:when>
             </xsl:choose>
-      </xsl:for-each>
+          </xsl:for-each>
+      </xsl:variable>
+      <xsl:value-of select="$Valid"/>
   </xsl:template>
 
  <!-- Getting the CvQualifiedType-->
-  <xsl:template name="cvQualifiedType">
+  <xsl:template name="isCvQualifiedType">
       <xsl:param name="id" /> 
-      TypeId <xsl:value-of select="$id"/>
-      <xsl:for-each select="//GCC_XML/CvQualifiedType"> <!--//GCC_XML/CvQualifiedType  the search xpath pattern-->
+      <xsl:variable name="Valid">
+          <xsl:for-each select="//GCC_XML/CvQualifiedType"> <!--//GCC_XML/CvQualifiedType  the search xpath pattern-->
              <xsl:choose>
                    <xsl:when test="($id = @id)">
-                       $typeName <xsl:value-of select="@id"/>
+                       CvQualified Type <xsl:value-of select="@type"/>  id : <xsl:value-of select="@id"/>
                    </xsl:when>
             </xsl:choose>
-      </xsl:for-each>
+          </xsl:for-each>
+      </xsl:variable>
+      <xsl:value-of select="$Valid"/>
   </xsl:template>
 
 
  <!-- Getting the PointerType-->
-  <xsl:template name="pointerType">
+  <xsl:template name="isPointerType">
       <xsl:param name="id" /> 
-      TypeId <xsl:value-of select="$id"/>
-      <xsl:for-each select="//GCC_XML/PointerType"> <!--//GCC_XML/PointerType  the search xpath pattern-->
+      <xsl:variable name="Valid">
+         <xsl:for-each select="//GCC_XML/PointerType"> <!--//GCC_XML/PointerType  the search xpath pattern-->
              <xsl:choose>
                    <xsl:when test="($id = @id)">
-                       $typeName <xsl:value-of select="@id"/>
+                       PointerType <xsl:value-of select="@type"/> id : <xsl:value-of select="@id"/>
                    </xsl:when>
             </xsl:choose>
-      </xsl:for-each>
+         </xsl:for-each>
+      </xsl:variable>
+      <xsl:value-of select="$Valid"/>
   </xsl:template>
 
  <!-- Getting the Fundamental Type -->
-  <xsl:template name="fundamentalType">
+  <xsl:template name="isFundamentalType">
       <xsl:param name="id" /> 
-      TypeId <xsl:value-of select="$id"/>
-      <xsl:for-each select="//GCC_XML/FundamentalType"> <!--//GCC_XML/FundamentalType  the search xpath pattern-->
+      <xsl:variable name="Valid">
+         <xsl:for-each select="//GCC_XML/FundamentalType"> <!--//GCC_XML/FundamentalType  the search xpath pattern-->
              <xsl:choose>
                    <xsl:when test="($id = @id)">
-                       $typeName <xsl:value-of select="@id"/>
+                       Fundamental name <xsl:value-of select="@name"/> id : <xsl:value-of select="@id"/>
                    </xsl:when>
             </xsl:choose>
-      </xsl:for-each>
+         </xsl:for-each>
+      </xsl:variable>
+      <xsl:value-of select="$Valid"/>
   </xsl:template>
   
  <!-- Getting the Getting the type-->  
   <xsl:template name="type" >
      <xsl:param name="id" />
-     TypeId <xsl:value-of select="$id"/>
-     <xsl:variable name="fundamentalType" select="'FundamentalType'" />
-     <xsl:call-template name="fundamentalType">
+     <xsl:variable name="isFundamental">
+        <xsl:call-template name="isFundamentalType">
            <xsl:with-param name="id"><xsl:value-of select="$id" /></xsl:with-param>
-           <xsl:with-param name="typeName"><xsl:value-of select="$fundamentalType" /></xsl:with-param>
-     </xsl:call-template>
+        </xsl:call-template>
+     </xsl:variable>
+     <xsl:variable name="isPointer">
+        <xsl:call-template name="isPointerType">
+           <xsl:with-param name="id"><xsl:value-of select="$id" /></xsl:with-param>
+        </xsl:call-template>
+     </xsl:variable>
+     <xsl:variable name="isCvQualified">
+        <xsl:call-template name="isCvQualifiedType">
+           <xsl:with-param name="id"><xsl:value-of select="$id" /></xsl:with-param>
+        </xsl:call-template>
+     </xsl:variable>
+     <xsl:variable name="isEnumeration">
+        <xsl:call-template name="isEnumerationType">
+           <xsl:with-param name="id"><xsl:value-of select="$id" /></xsl:with-param>
+        </xsl:call-template>
+     </xsl:variable>
+     <xsl:value-of select="$isFundamental" />
+     <xsl:value-of select="$isPointer" />
+     <xsl:value-of select="$isCvQualified" />
+     <xsl:value-of select="$isEnumeration" />
   </xsl:template>  
   
   <!-- Getting the Getting the return of the function-->  
