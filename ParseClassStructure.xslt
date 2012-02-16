@@ -24,7 +24,8 @@
           <xsl:for-each select="//GCC_XML/Enumeration"> <!--//GCC_XML/Enumeration the search xpath pattern-->
              <xsl:choose>
                    <xsl:when test="($id = @id)">
-                       Enumeration <xsl:value-of select="@name"/> id : <xsl:value-of select="@id"/>
+                       <!--Enumeration <xsl:value-of select="@name"/> id : <xsl:value-of select="@id"/>-->
+                       insertIntoEnumerationTable(&quot;<xsl:value-of select="@name"/>&quot;);
                    </xsl:when>
             </xsl:choose>
           </xsl:for-each>
@@ -39,7 +40,11 @@
           <xsl:for-each select="//GCC_XML/CvQualifiedType"> <!--//GCC_XML/CvQualifiedType  the search xpath pattern-->
              <xsl:choose>
                    <xsl:when test="($id = @id)">
-                       CvQualified Type <xsl:value-of select="@type"/>  id : <xsl:value-of select="@id"/>
+                       <!-- &quotCvQualified Type <xsl:value-of select="@type"/>  id : <xsl:value-of select="@id"/ >&quot-->
+                       insertIntoCvQualifiedTable(&quot;<xsl:value-of select="@type"/>&quot;);
+                       <xsl:call-template name="type">
+                         <xsl:with-param name="id"><xsl:value-of select="@type" /></xsl:with-param>
+                       </xsl:call-template>
                    </xsl:when>
             </xsl:choose>
           </xsl:for-each>
@@ -55,7 +60,11 @@
          <xsl:for-each select="//GCC_XML/PointerType"> <!--//GCC_XML/PointerType  the search xpath pattern-->
              <xsl:choose>
                    <xsl:when test="($id = @id)">
-                       PointerType <xsl:value-of select="@type"/> id : <xsl:value-of select="@id"/>
+                       <!--PointerType <xsl:value-of select="@type"/> id : <xsl:value-of select="@id"/>-->
+                       insertIntoPointerTable(&quot;<xsl:value-of select="@type"/>&quot;);
+                      <xsl:call-template name="type">
+                         <xsl:with-param name="id"><xsl:value-of select="@type" /></xsl:with-param>
+                      </xsl:call-template>
                    </xsl:when>
             </xsl:choose>
          </xsl:for-each>
@@ -70,7 +79,8 @@
          <xsl:for-each select="//GCC_XML/FundamentalType"> <!--//GCC_XML/FundamentalType  the search xpath pattern-->
              <xsl:choose>
                    <xsl:when test="($id = @id)">
-                       Fundamental name <xsl:value-of select="@name"/> id : <xsl:value-of select="@id"/>
+                       <!--Fundamental name <xsl:value-of select="@name"/> id : <xsl:value-of select="@id"/>-->
+                       insertIntoFundamentalTable(&quot;<xsl:value-of select="@name"/>&quot;);
                    </xsl:when>
             </xsl:choose>
          </xsl:for-each>
@@ -119,15 +129,15 @@
      <xsl:for-each select="//GCC_XML/Method">
         <xsl:choose>
              <xsl:when test="($id = @id)"> 
-                 Method Function: <xsl:value-of select="@name"/>
-                 Access Specifier: <xsl:value-of select="@access"/>
+                 <!-- Method Function: <xsl:value-of select="@name"/> -->
+                 <!-- Access Specifier: <xsl:value-of select="@access"/>-->
                  <xsl:for-each select="Argument">
-                     Argument <xsl:value-of select="@type"/>
+                     <!--  Argument <xsl:value-of select="@type"/> -->
                      <xsl:call-template name="type">
                          <xsl:with-param name="id"><xsl:value-of select="@type" /></xsl:with-param>
                      </xsl:call-template>
                  </xsl:for-each>
-                 Returns: 
+                 <!-- Returns: -->
                  <xsl:call-template name="type">
                          <xsl:with-param name="id"><xsl:value-of select="@returns" /></xsl:with-param>
                      </xsl:call-template>
@@ -154,7 +164,7 @@
   <!-- Getting the class details-->  
   <xsl:template name="class" >
      <xsl:for-each select="GCC_XML/Class">
-       Class <xsl:value-of select="@name"/>
+       <!-- Class <xsl:value-of select="@name"/> -->
        <xsl:call-template name="class_members">
            <xsl:with-param name="members"><xsl:value-of select="@members" /></xsl:with-param>
        </xsl:call-template>
@@ -164,8 +174,15 @@
   <!-- Starting point of the parsing the xml like main-->  
   <xsl:template match="/">
      #include "connection.h"
+     #include "QDebug"
      
-     <xsl:call-template name="class" />
+     void init()
+     {
+          createConnection();
+          <xsl:call-template name="class" />
+     }
+     
+     
    
   </xsl:template>
 </xsl:stylesheet>
