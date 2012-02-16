@@ -109,24 +109,28 @@
   
   <!-- Getting the Getting the return of the function-->  
   <xsl:template name="return" >
-     <xsl:for-each select="GCC_XML/Method">
+     <xsl:param name="id" /> 
        Returns <xsl:value-of select="@returns"/>
-     </xsl:for-each>
-  </xsl:template>  
+  </xsl:template>
 
-  <!-- Getting the Getting the method-->  
+  <!-- Getting the Getting the method details like argument, return types, access specifier-->  
   <xsl:template name="method" >
      <xsl:param name="id" /> 
      <xsl:for-each select="//GCC_XML/Method">
         <xsl:choose>
              <xsl:when test="($id = @id)"> 
-                 Method Function <xsl:value-of select="@name"/>
+                 Method Function: <xsl:value-of select="@name"/>
+                 Access Specifier: <xsl:value-of select="@access"/>
                  <xsl:for-each select="Argument">
                      Argument <xsl:value-of select="@type"/>
                      <xsl:call-template name="type">
                          <xsl:with-param name="id"><xsl:value-of select="@type" /></xsl:with-param>
                      </xsl:call-template>
                  </xsl:for-each>
+                 Returns: 
+                 <xsl:call-template name="type">
+                         <xsl:with-param name="id"><xsl:value-of select="@returns" /></xsl:with-param>
+                     </xsl:call-template>
              </xsl:when>
         </xsl:choose>
      </xsl:for-each>
