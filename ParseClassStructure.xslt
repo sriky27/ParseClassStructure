@@ -2,16 +2,20 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
 <xsl:template name="method-list">
+    <xsl:param name="className" />
     <xsl:param name="list" /> 
+    Method list : className : <xsl:value-of select="$className" />
     <xsl:variable name="newlist" select="concat(normalize-space($list), ' ')" /> 
     <xsl:variable name="first" select="substring-before($newlist, ' ')" /> 
     <xsl:variable name="remaining" select="substring-after($newlist, ' ')" /> 
     Method <xsl:value-of select="$first" /> 
     <xsl:call-template name="method" >
+         <xsl:with-param name="className" select="$className" /> 
          <xsl:with-param name="id" select="$first" /> 
     </xsl:call-template>
     <xsl:if test="$remaining">
         <xsl:call-template name="method-list">
+                <xsl:with-param name="className" select="$className" /> 
                 <xsl:with-param name="list" select="$remaining" /> 
         </xsl:call-template>
     </xsl:if>
@@ -125,12 +129,14 @@
 
   <!-- Getting the Getting the method details like argument, return types, access specifier-->  
   <xsl:template name="method" >
+     <xsl:param name="className" />
      <xsl:param name="id" /> 
      <xsl:for-each select="//GCC_XML/Method">
         <xsl:choose>
              <xsl:when test="($id = @id)"> 
                  <!-- Method Function: <xsl:value-of select="@name"/> -->
                  <!-- Access Specifier: <xsl:value-of select="@access"/>-->
+                 insertIntoFunctionTable(&quot;<xsl:value-of select="$className" />&quot;, &quot;<xsl:value-of select="@name" />&quot;);
                  <xsl:for-each select="Argument">
                      <!--  Argument <xsl:value-of select="@type"/> -->
                      <xsl:call-template name="type">
@@ -155,8 +161,11 @@
 
  <!-- Getting the member aka functions of the class-->  
   <xsl:template name="class_members" >
+     <xsl:param name="className" />
      <xsl:param name="members" />
+     className : <xsl:value-of select="$className" />
      <xsl:call-template name="method-list">
+         <xsl:with-param name="className"><xsl:value-of select="$className" /></xsl:with-param>
          <xsl:with-param name="list"><xsl:value-of select="$members" /></xsl:with-param>
      </xsl:call-template>
   </xsl:template>
@@ -165,7 +174,9 @@
   <xsl:template name="class" >
      <xsl:for-each select="GCC_XML/Class">
        <!-- Class <xsl:value-of select="@name"/> -->
+       insertIntoClassTable(&quot;<xsl:value-of select="@name"/>&quot;);
        <xsl:call-template name="class_members">
+           <xsl:with-param name="className"><xsl:value-of select="@name" /></xsl:with-param>
            <xsl:with-param name="members"><xsl:value-of select="@members" /></xsl:with-param>
        </xsl:call-template>
      </xsl:for-each>
