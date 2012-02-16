@@ -1,1 +1,5 @@
 This project would be parsing the gccxml and getting the class, function, variable details and trying to compose a qt test on top it
+
+TODO
+1. Upload the connection.h 
+2. Pass parameter to xslt for the class to be read.
