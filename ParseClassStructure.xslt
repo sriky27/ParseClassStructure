@@ -4,11 +4,9 @@
 <xsl:template name="method-list">
     <xsl:param name="className" />
     <xsl:param name="list" /> 
-    Method list : className : <xsl:value-of select="$className" />
     <xsl:variable name="newlist" select="concat(normalize-space($list), ' ')" /> 
     <xsl:variable name="first" select="substring-before($newlist, ' ')" /> 
     <xsl:variable name="remaining" select="substring-after($newlist, ' ')" /> 
-    Method <xsl:value-of select="$first" /> 
     <xsl:call-template name="method" >
          <xsl:with-param name="className" select="$className" /> 
          <xsl:with-param name="id" select="$first" /> 
@@ -163,7 +161,7 @@
   <xsl:template name="class_members" >
      <xsl:param name="className" />
      <xsl:param name="members" />
-     className : <xsl:value-of select="$className" />
+     <!-- className : <xsl:value-of select="$className" /> -->
      <xsl:call-template name="method-list">
          <xsl:with-param name="className"><xsl:value-of select="$className" /></xsl:with-param>
          <xsl:with-param name="list"><xsl:value-of select="$members" /></xsl:with-param>
