@@ -196,11 +196,13 @@
   <xsl:template name="class" >
      <xsl:param name="targetClassName"/>
      <xsl:for-each select="GCC_XML/Class">
-       <!-- Class <xsl:value-of select="@name"/> -->
-       <xsl:call-template name="class_members">
-           <xsl:with-param name="className"><xsl:value-of select="@name" /></xsl:with-param>
-           <xsl:with-param name="members"><xsl:value-of select="@members" /></xsl:with-param>
-       </xsl:call-template>
+       <xsl:if test="@name = $targetClassName">
+            <!-- Class <xsl:value-of select="@name"/> -->
+            <xsl:call-template name="class_members">
+                <xsl:with-param name="className"><xsl:value-of select="@name" /></xsl:with-param>
+                <xsl:with-param name="members"><xsl:value-of select="@members" /></xsl:with-param>
+            </xsl:call-template>
+       </xsl:if>
      </xsl:for-each>
   </xsl:template>  
   
@@ -217,7 +219,7 @@
     #include "QObject"
     #include "QTestEventLoop"
     
-    <xsl:variable name="targetClassName" select="'Header'" /> 
+    <xsl:variable name="targetClassName" select="'OmbDeviceInformation'" /> 
     class Test_<xsl:value-of select="$targetClassName" />
     { 
         Q_OBJECT
