@@ -7,10 +7,19 @@
     <xsl:variable name="newlist" select="concat(normalize-space($list), ' ')" /> 
     <xsl:variable name="first" select="substring-before($newlist, ' ')" /> 
     <xsl:variable name="remaining" select="substring-after($newlist, ' ')" /> 
-    <xsl:call-template name="method" >
+    <xsl:variable name="method_name"> 
+       <xsl:call-template name="method" >
          <xsl:with-param name="className" select="$className" /> 
          <xsl:with-param name="id" select="$first" /> 
-    </xsl:call-template>
+       </xsl:call-template>
+    </xsl:variable>
+    <xsl:value-of select="$method_name" />
+    <xsl:if test="$method_name">
+       <xsl:call-template name="constructor" >
+         <xsl:with-param name="className" select="$className" /> 
+         <xsl:with-param name="id" select="$first" /> 
+       </xsl:call-template>
+    </xsl:if>
     <xsl:if test="$remaining">
         <xsl:call-template name="method-list">
                 <xsl:with-param name="className" select="$className" /> 
@@ -191,6 +200,19 @@
          <xsl:with-param name="list"><xsl:value-of select="$members" /></xsl:with-param>
      </xsl:call-template>
   </xsl:template>
+  
+  <!-- Get the constructor of the class -->
+  <xsl:template name="constructor" >
+     <xsl:param name="className"/>
+     <xsl:param name="id"/>
+     <xsl:for-each select="//GCC_XML/Constructor">
+        <xsl:choose>
+            <xsl:when test="($id = @id)">
+               Constructor <xsl:value-of select="@name"/>
+            </xsl:when>
+        </xsl:choose>
+     </xsl:for-each>
+  </xsl:template>
 
   <!-- Getting the class details-->  
   <xsl:template name="class" >
@@ -219,7 +241,7 @@
     #include "QObject"
     #include "QTestEventLoop"
     
-    <xsl:variable name="targetClassName" select="'OmbDeviceInformation'" /> 
+    <xsl:variable name="targetClassName" select="'Header'" /> 
     class Test_<xsl:value-of select="$targetClassName" />
     { 
         Q_OBJECT
