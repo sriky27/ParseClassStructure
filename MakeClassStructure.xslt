@@ -234,7 +234,10 @@
         </xsl:call-template>
      }
      
-     
+     QTEST_MAIN(Test_<xsl:value-of select="$targetClassName" />); 
+    
+    
+   #include "tst_<xsl:value-of select="translate($targetClassName,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')" />.moc"
    
   </xsl:template>
 </xsl:stylesheet>
